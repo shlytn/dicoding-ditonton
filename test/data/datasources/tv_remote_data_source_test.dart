@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/exception.dart';
+import '../../../core/lib/utils/constants.dart';
+import '../../../core/lib/utils/exception.dart';
 import 'package:ditonton/data/datasources/tv_remote_data_source.dart';
 import 'package:ditonton/data/models/tv_detail_model.dart';
 import 'package:ditonton/data/models/tv_response.dart';

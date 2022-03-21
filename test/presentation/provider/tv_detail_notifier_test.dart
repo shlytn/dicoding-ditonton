@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/common/state_enum.dart';
+import '../../../core/lib/utils/failure.dart';
+import '../../../core/lib/utils/state_enum.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/domain/usecases/get_tv_detail.dart';
 import 'package:ditonton/domain/usecases/get_tv_recommendations.dart';

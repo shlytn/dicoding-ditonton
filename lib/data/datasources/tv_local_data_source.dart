@@ -1,4 +1,4 @@
-import 'package:ditonton/common/exception.dart';
+import 'package:core/core.dart';
 import 'package:ditonton/data/datasources/db/database_helper_tv.dart';
 import 'package:ditonton/data/models/tv_table.dart';
 
