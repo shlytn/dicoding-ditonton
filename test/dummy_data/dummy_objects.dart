@@ -1,7 +1,11 @@
 import 'package:ditonton/data/models/movie_table.dart';
+import 'package:ditonton/data/models/tv_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/domain/entities/season.dart';
+import 'package:ditonton/domain/entities/tv.dart';
+import 'package:ditonton/domain/entities/tv_detail.dart';
 
 final testMovie = Movie(
   adult: false,
@@ -56,4 +60,76 @@ final testMovieMap = {
   'overview': 'overview',
   'posterPath': 'posterPath',
   'title': 'title',
+};
+
+final testTv = Tv(
+  backdropPath: '/q8eejQcg1bAqImEV8jh8RtBD4uH.jpg',
+  firstAirDate: '2021-11-06',
+  genreIds: [
+    16,
+    10765,
+    10759,
+    18,
+  ],
+  id: 94605,
+  name: 'Arcane',
+  originalName: 'Arcane',
+  overview:
+      'Amid the stark discord of twin cities Piltover and Zaun, two sisters fight on rival sides of a war between magic technologies and clashing convictions.',
+  popularity: 218.007,
+  posterPath: '/fqldf2t8ztc9aiwn3k6mlX3tvRT.jpg',
+  voteAverage: 9.1,
+  voteCount: 1869,
+);
+
+final testTvList = [testTv];
+
+final testTvDetail = TvDetail(
+  adult: false,
+  backdropPath: '/path.jpg',
+  episodeRunTime: [60],
+  firstAirDate: 'firstAirDate',
+  genres: [Genre(id: 1, name: 'Action')],
+  id: 1,
+  lastAirDate: 'lastAirDate',
+  name: 'name',
+  numberOfEpisodes: 12,
+  numberOfSeasons: 1,
+  originalName: 'originalName',
+  overview: 'overview',
+  posterPath: '/path.jpg',
+  seasons: [
+    Season(
+      airDate: 'airDate',
+      episodeCount: 12,
+      id: 1,
+      name: 'name',
+      overview: 'overview',
+      posterPath: 'posterPath',
+      seasonNumber: 1,
+    ),
+  ],
+  voteAverage: 1.0,
+  voteCount: 1,
+);
+
+final testWatchlistTv = Tv.watchlist(
+  id: 1,
+  name: 'name',
+  posterPath: '/path.jpg',
+  overview: 'overview',
+);
+
+final testTvTable = TvTable(
+  id: 1,
+  name: 'name',
+  posterPath: '/path.jpg',
+  overview: 'overview',
+);
+
+final testTvMap = {
+  'id': 1,
+  'overview': 'overview',
+  'posterPath': '/path.jpg',
+  'name': 'name',
 };
