@@ -1,8 +1,8 @@
-import '../../../lib/utils/state_enum.dart';
-import '../../../lib/domain/entities/movie.dart';
-import '../../../lib/domain/entities/tv.dart';
-import '../../../lib/presentation/pages/watchlist/watchlist_movies_page.dart';
-import '../../../lib/presentation/pages/watchlist/watchlist_tv_page.dart';
+import '../../../../core/lib/utils/state_enum.dart';
+import '../../../../core/lib/domain/entities/movie.dart';
+import '../../../../core/lib/domain/entities/tv.dart';
+import '../../../lib/presentation/pages/watchlist_movies_page.dart';
+import '../../../lib/presentation/pages/watchlist_tv_page.dart';
 import '../../../lib/presentation/provider/watchlist_movie_notifier.dart';
 import '../../../lib/presentation/provider/watchlist_tv_notifier.dart';
 import 'package:flutter/material.dart';

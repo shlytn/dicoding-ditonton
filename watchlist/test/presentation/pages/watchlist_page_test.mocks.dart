@@ -5,14 +5,14 @@
 import 'dart:async' as _i7;
 import 'dart:ui' as _i8;
 
-import '../../../lib/utils/state_enum.dart' as _i6;
-import '../../../lib/domain/entities/movie.dart' as _i10;
-import '../../../lib/domain/entities/tv.dart' as _i5;
-import '../../../lib/domain/usecases/get_watchlist_movies.dart' as _i3;
-import '../../../lib/domain/usecases/get_watchlist_tvs.dart' as _i2;
-import '../../../lib/presentation/provider/watchlist_movie_notifier.dart'
+import '../../../../core/lib/utils/state_enum.dart' as _i6;
+import '../../../../core/lib/domain/entities/movie.dart' as _i10;
+import '../../../../core/lib/domain/entities/tv.dart' as _i5;
+import '../../../../watchlist/lib/domain/usecases/get_watchlist_movies.dart' as _i3;
+import '../../../../watchlist/lib/domain/usecases/get_watchlist_tvs.dart' as _i2;
+import '../../../../watchlist/lib/presentation/provider/watchlist_movie_notifier.dart'
     as _i9;
-import '../../../lib/presentation/provider/watchlist_tv_notifier.dart'
+import '../../../../watchlist/lib/presentation/provider/watchlist_tv_notifier.dart'
     as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
