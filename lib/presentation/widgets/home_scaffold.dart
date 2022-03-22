@@ -1,6 +1,6 @@
-import 'package:ditonton/presentation/pages/search_page.dart';
 import 'package:ditonton/presentation/widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:search/search.dart';
 
 class HomeScaffold extends StatelessWidget {
   final Widget body;
