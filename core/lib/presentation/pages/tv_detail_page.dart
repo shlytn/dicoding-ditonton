@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import '../../domain/entities/genre.dart';
-import '../../domain/entities/tv.dart';
-import '../../domain/entities/tv_detail.dart';
 import '../../presentation/provider/tv_detail_notifier.dart';
 import '../../presentation/widgets/season_card_list.dart';
 import 'package:flutter/material.dart';

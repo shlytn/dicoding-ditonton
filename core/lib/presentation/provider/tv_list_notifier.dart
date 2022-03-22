@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import '../../domain/entities/tv.dart';
 import '../../domain/usecases/get_on_air_tvs.dart';
 import '../../domain/usecases/get_popular_tvs.dart';
 import '../../domain/usecases/get_top_rated_tvs.dart';

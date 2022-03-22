@@ -4,9 +4,6 @@ import 'package:dartz/dartz.dart';
 import '../../data/datasources/movie_local_data_source.dart';
 import '../../data/datasources/movie_remote_data_source.dart';
 import '../../data/models/movie_table.dart';
-import '../../domain/entities/movie.dart';
-import '../../domain/entities/movie_detail.dart';
-import '../../domain/repositories/movie_repository.dart';
 import 'package:core/core.dart';
 
 class MovieRepositoryImpl implements MovieRepository {

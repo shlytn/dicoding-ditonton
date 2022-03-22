@@ -4,9 +4,6 @@ import 'package:dartz/dartz.dart';
 import '../../data/datasources/tv_local_data_source.dart';
 import '../../data/datasources/tv_remote_data_source.dart';
 import '../../data/models/tv_table.dart';
-import '../../domain/entities/tv.dart';
-import '../../domain/entities/tv_detail.dart';
-import '../../domain/repositories/tv_repository.dart';
 import 'package:core/core.dart';
 
 class TvRepositoryImpl implements TvRepository {

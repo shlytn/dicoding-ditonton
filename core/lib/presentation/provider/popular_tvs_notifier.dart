@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import '../../domain/entities/tv.dart';
 import '../../domain/usecases/get_popular_tvs.dart';
 import 'package:flutter/foundation.dart';
 
