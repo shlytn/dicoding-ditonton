@@ -10,12 +10,24 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  about:
+    path: ../about
+  search:
+    path: ../search
   google_fonts: ^2.3.1
+  cupertino_icons: ^1.0.2
+  http: ^0.13.3
+  provider: ^5.0.0
+  dartz: ^0.10.0-nullsafety.2
+  equatable: ^2.0.3
+  flutter_rating_bar: ^4.0.0
+  cached_network_image: ^3.0.0
+  sqflite: ^2.0.0+3
+  path_provider: ^2.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  equatable: ^2.0.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
