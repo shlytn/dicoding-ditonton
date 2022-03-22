@@ -5,10 +5,10 @@
 import 'dart:async' as _i5;
 
 import 'package:dartz/dartz.dart' as _i3;
-import '../../../core/lib/utils/failure.dart' as _i6;
-import 'package:ditonton/domain/entities/tv.dart' as _i7;
-import 'package:ditonton/domain/repositories/tv_repository.dart' as _i2;
-import '../../../search/lib/domain/usecases/search_tvs.dart' as _i4;
+import '../../../../core/lib/utils/failure.dart' as _i6;
+import 'package:core/domain/entities/tv.dart' as _i7;
+import 'package:core/domain/repositories/tv_repository.dart' as _i2;
+import '../../../lib/domain/usecases/search_tvs.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint

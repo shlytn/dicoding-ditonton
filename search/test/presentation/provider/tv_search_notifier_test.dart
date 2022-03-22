@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import '../../../core/lib/utils/failure.dart';
-import '../../../core/lib/utils/state_enum.dart';
-import 'package:ditonton/domain/entities/tv.dart';
-import '../../../search/lib/domain/usecases/search_tvs.dart';
-import '../../../search/lib/presentation/provider/tv_search_notifier.dart';
+import '../../../../core/lib/utils/failure.dart';
+import '../../../../core/lib/utils/state_enum.dart';
+import 'package:core/domain/entities/tv.dart';
+import '../../../lib/domain/usecases/search_tvs.dart';
+import '../../../lib/presentation/provider/tv_search_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
