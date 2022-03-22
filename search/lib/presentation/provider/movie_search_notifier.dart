@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
-import 'package:ditonton/domain/entities/movie.dart';
-import 'package:ditonton/domain/usecases/search_movies.dart';
+import 'package:core/domain/entities/movie.dart';
+import '../../domain/usecases/search_movies.dart';
 import 'package:flutter/foundation.dart';
 
 class MovieSearchNotifier extends ChangeNotifier {
@@ -9,12 +9,15 @@ class MovieSearchNotifier extends ChangeNotifier {
   MovieSearchNotifier({required this.searchMovies});
 
   RequestState _state = RequestState.Empty;
+
   RequestState get state => _state;
 
   List<Movie> _searchResult = [];
+
   List<Movie> get searchResult => _searchResult;
 
   String _message = '';
+
   String get message => _message;
 
   Future<void> fetchMovieSearch(String query) async {
