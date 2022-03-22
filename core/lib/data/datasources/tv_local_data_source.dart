@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
-import 'package:ditonton/data/datasources/db/database_helper_tv.dart';
-import 'package:ditonton/data/models/tv_table.dart';
+import '../../data/datasources/db/database_helper_tv.dart';
+import '../../data/models/tv_table.dart';
 
 abstract class TvLocalDataSource {
   Future<String> insertWatchlist(TvTable tv);

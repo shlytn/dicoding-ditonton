@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:core/core.dart';
-import 'package:ditonton/domain/entities/tv.dart';
-import 'package:ditonton/domain/repositories/tv_repository.dart';
+import '../../domain/entities/tv.dart';
+import '../../domain/repositories/tv_repository.dart';
 
 class GetTvRecommendations {
   final TvRepository repository;

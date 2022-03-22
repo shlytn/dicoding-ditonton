@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
-import 'package:ditonton/domain/entities/genre.dart';
-import 'package:ditonton/domain/entities/tv.dart';
-import 'package:ditonton/domain/entities/tv_detail.dart';
-import 'package:ditonton/presentation/provider/tv_detail_notifier.dart';
-import 'package:ditonton/presentation/widgets/season_card_list.dart';
+import '../../domain/entities/genre.dart';
+import '../../domain/entities/tv.dart';
+import '../../domain/entities/tv_detail.dart';
+import '../../presentation/provider/tv_detail_notifier.dart';
+import '../../presentation/widgets/season_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';

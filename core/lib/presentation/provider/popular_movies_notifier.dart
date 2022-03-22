@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
-import 'package:ditonton/domain/entities/movie.dart';
-import 'package:ditonton/domain/usecases/get_popular_movies.dart';
+import '../../domain/entities/movie.dart';
+import '../../domain/usecases/get_popular_movies.dart';
 import 'package:flutter/foundation.dart';
 
 class PopularMoviesNotifier extends ChangeNotifier {

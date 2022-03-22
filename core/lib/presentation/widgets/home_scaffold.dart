@@ -1,4 +1,4 @@
-import 'package:ditonton/presentation/widgets/app_drawer.dart';
+import '../../presentation/widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:search/search.dart';
 

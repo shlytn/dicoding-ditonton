@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:ditonton/data/models/tv_table.dart';
+import '../../models/tv_table.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelperTv {

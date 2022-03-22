@@ -1,11 +1,11 @@
 import 'package:core/core.dart';
-import 'package:ditonton/domain/entities/tv.dart';
-import 'package:ditonton/domain/entities/tv_detail.dart';
-import 'package:ditonton/domain/usecases/get_tv_detail.dart';
-import 'package:ditonton/domain/usecases/get_tv_recommendations.dart';
-import 'package:ditonton/domain/usecases/get_watchlist_tv_status.dart';
-import 'package:ditonton/domain/usecases/remove_watchlist_tv.dart';
-import 'package:ditonton/domain/usecases/save_watchlist_tv.dart';
+import '../../domain/entities/tv.dart';
+import '../../domain/entities/tv_detail.dart';
+import '../../domain/usecases/get_tv_detail.dart';
+import '../../domain/usecases/get_tv_recommendations.dart';
+import '../../domain/usecases/get_watchlist_tv_status.dart';
+import '../../domain/usecases/remove_watchlist_tv.dart';
+import '../../domain/usecases/save_watchlist_tv.dart';
 import 'package:flutter/foundation.dart';
 
 class TvDetailNotifier extends ChangeNotifier {

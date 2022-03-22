@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
-import 'package:ditonton/domain/entities/tv.dart';
-import 'package:ditonton/domain/usecases/get_on_air_tvs.dart';
+import '../../domain/entities/tv.dart';
+import '../../domain/usecases/get_on_air_tvs.dart';
 import 'package:flutter/foundation.dart';
 
 class OnAirTvsNotifier extends ChangeNotifier {

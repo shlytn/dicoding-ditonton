@@ -1,11 +1,11 @@
 import 'package:core/core.dart';
-import 'package:ditonton/presentation/pages/on_air_tvs_page.dart';
-import 'package:ditonton/presentation/pages/popular_tvs_page.dart';
-import 'package:ditonton/presentation/pages/top_rated_tvs_page.dart';
-import 'package:ditonton/presentation/provider/tv_list_notifier.dart';
-import 'package:ditonton/presentation/widgets/home_scaffold.dart';
-import 'package:ditonton/presentation/widgets/sub_heading.dart';
-import 'package:ditonton/presentation/widgets/tv_list.dart';
+import '../../presentation/pages/on_air_tvs_page.dart';
+import '../../presentation/pages/popular_tvs_page.dart';
+import '../../presentation/pages/top_rated_tvs_page.dart';
+import '../../presentation/provider/tv_list_notifier.dart';
+import '../../presentation/widgets/home_scaffold.dart';
+import '../../presentation/widgets/sub_heading.dart';
+import '../../presentation/widgets/tv_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

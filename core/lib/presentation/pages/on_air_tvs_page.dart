@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
-import 'package:ditonton/presentation/provider/on_air_tvs_notifier.dart';
-import 'package:ditonton/presentation/widgets/tv_card_list.dart';
+import '../../presentation/provider/on_air_tvs_notifier.dart';
+import '../../presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
