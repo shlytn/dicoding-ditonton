@@ -1,7 +1,7 @@
-import '../../pages/watchlist/watchlist_movies_page.dart';
-import '../../pages/watchlist/watchlist_tv_page.dart';
-import '../../widgets/dropdown_widget.dart';
+import 'package:core/presentation/widgets/dropdown_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:watchlist/presentation/pages/watchlist_movies_page.dart';
+import 'package:watchlist/presentation/pages/watchlist_tv_page.dart';
 
 class WatchlistPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist';

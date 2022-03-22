@@ -1,8 +1,9 @@
 import 'package:core/core.dart';
-import '../../provider/watchlist_tv_notifier.dart';
-import '../../widgets/tv_card_list.dart';
+import 'package:core/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../provider/watchlist_tv_notifier.dart';
 
 class WatchlistTvsPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist-tv';

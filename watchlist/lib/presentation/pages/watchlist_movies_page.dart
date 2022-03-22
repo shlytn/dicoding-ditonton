@@ -1,8 +1,9 @@
 import 'package:core/core.dart';
-import '../../provider/watchlist_movie_notifier.dart';
-import '../../widgets/movie_card_list.dart';
+import 'package:core/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../provider/watchlist_movie_notifier.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist-movie';

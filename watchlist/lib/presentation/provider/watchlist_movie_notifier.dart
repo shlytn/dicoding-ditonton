@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import '../../domain/entities/movie.dart';
 import '../../domain/usecases/get_watchlist_movies.dart';
 import 'package:flutter/foundation.dart';
 
