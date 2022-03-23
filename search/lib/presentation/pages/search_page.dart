@@ -31,11 +31,10 @@ class _SearchPageState extends State<SearchPage> {
           children: [
             TextField(
               onSubmitted: (query) {
-                value == dropdownItems[0]
-                    ? Provider.of<TvSearchNotifier>(context, listen: false)
-                        .fetchTvSearch(query)
-                    : Provider.of<MovieSearchNotifier>(context, listen: false)
-                        .fetchMovieSearch(query);
+                Provider.of<TvSearchNotifier>(context, listen: false)
+                    .fetchTvSearch(query);
+                Provider.of<MovieSearchNotifier>(context, listen: false)
+                    .fetchMovieSearch(query);
               },
               decoration: InputDecoration(
                 hintText: 'Search title',
