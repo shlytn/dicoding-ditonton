@@ -65,11 +65,11 @@ void init() {
       removeWatchlist: locator(),
     ),
   );
-  locator.registerFactory(
-    () => MovieSearchNotifier(
-      searchMovies: locator(),
-    ),
-  );
+  // locator.registerFactory(
+  //   () => MovieSearchNotifier(
+  //     searchMovies: locator(),
+  //   ),
+  // );
   locator.registerFactory(
     () => PopularMoviesNotifier(
       locator(),
@@ -103,11 +103,11 @@ void init() {
       removeWatchlist: locator(),
     ),
   );
-  locator.registerFactory(
-    () => TvSearchNotifier(
-      searchTvs: locator(),
-    ),
-  );
+  // locator.registerFactory(
+  //   () => TvSearchNotifier(
+  //     searchTvs: locator(),
+  //   ),
+  // );
   locator.registerFactory(
     () => OnAirTvsNotifier(
       getOnAirTvs: locator(),
