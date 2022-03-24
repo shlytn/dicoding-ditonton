@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:core/core.dart';
 import 'package:equatable/equatable.dart';
@@ -27,6 +25,6 @@ class TvSearchBloc extends Bloc<TvSearchEvent, TvSearchState> {
           emit(TvSearchHasData(data));
         },
       );
-    },);
+    }, transformer: debounce(const Duration(milliseconds: 1000)));
   }
 }
