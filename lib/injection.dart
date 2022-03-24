@@ -35,6 +35,17 @@ import 'package:watchlist/watchlist.dart';
 final locator = GetIt.instance;
 
 void init() {
+  // bloc
+  locator.registerFactory(
+    () => MovieSearchBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvSearchBloc(
+      locator(),
+    ),
+  );
   // provider
 
   // movie

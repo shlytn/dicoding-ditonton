@@ -1,6 +1,9 @@
 import 'package:core/core.dart';
 import 'package:core/presentation/widgets/dropdown_widget.dart';
 import 'package:core/presentation/widgets/movie_card_list.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:search/presentation/bloc/movie_search_bloc.dart';
+import 'package:search/presentation/bloc/tv_search_bloc.dart';
 import '../../presentation/provider/movie_search_notifier.dart';
 import '../../presentation/provider/tv_search_notifier.dart';
 import 'package:core/presentation/widgets/tv_card_list.dart';
@@ -30,11 +33,15 @@ class _SearchPageState extends State<SearchPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
+              onChanged: (query) {
+                context.read<MovieSearchBloc>().add(OnQueryChanged(query));
+                context.read<TvSearchBloc>().add(OnTvQueryChanged(query));
+              },
               onSubmitted: (query) {
-                Provider.of<TvSearchNotifier>(context, listen: false)
-                    .fetchTvSearch(query);
-                Provider.of<MovieSearchNotifier>(context, listen: false)
-                    .fetchMovieSearch(query);
+                // Provider.of<TvSearchNotifier>(context, listen: false)
+                //     .fetchTvSearch(query);
+                // Provider.of<MovieSearchNotifier>(context, listen: false)
+                //     .fetchMovieSearch(query);
               },
               decoration: InputDecoration(
                 hintText: 'Search title',
@@ -58,60 +65,129 @@ class _SearchPageState extends State<SearchPage> {
                 this.value = value;
               }),
             ),
-            value == dropdownItems[0]
-                ? Consumer<TvSearchNotifier>(
-                    builder: (context, data, child) {
-                      if (data.state == RequestState.Loading) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      } else if (data.state == RequestState.Loaded) {
-                        final result = data.searchResult;
-                        return Expanded(
-                          child: ListView.builder(
-                            padding: const EdgeInsets.all(8),
-                            itemBuilder: (context, index) {
-                              final tv = data.searchResult[index];
-                              return TvCard(tv);
-                            },
-                            itemCount: result.length,
-                          ),
-                        );
-                      } else {
-                        return Expanded(
-                          child: Container(),
-                        );
-                      }
-                    },
-                  )
-                : Consumer<MovieSearchNotifier>(
-                    builder: (context, data, child) {
-                      if (data.state == RequestState.Loading) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      } else if (data.state == RequestState.Loaded) {
-                        final result = data.searchResult;
-                        return Expanded(
-                          child: ListView.builder(
-                            padding: const EdgeInsets.all(8),
-                            itemBuilder: (context, index) {
-                              final movie = data.searchResult[index];
-                              return MovieCard(movie);
-                            },
-                            itemCount: result.length,
-                          ),
-                        );
-                      } else {
-                        return Expanded(
-                          child: Container(),
-                        );
-                      }
-                    },
-                  ),
+            value == dropdownItems[0] ? _buildTvSearch() : _buildMovieSearch(),
           ],
         ),
       ),
     );
+  }
+
+  Widget _buildTvSearch() {
+    return BlocBuilder<TvSearchBloc, TvSearchState>(
+      builder: (context, state) {
+        if (state is TvSearchLoading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is TvSearchHasData) {
+          final result = state.result;
+          return Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemBuilder: (context, index) {
+                final tv = result[index];
+                return TvCard(tv);
+              },
+              itemCount: result.length,
+            ),
+          );
+        } else if (state is TvSearchError) {
+          return Expanded(
+            child: Center(
+              child: Text(state.message),
+            ),
+          );
+        } else {
+          return Expanded(
+            child: Container(),
+          );
+        }
+      },
+    );
+    // Consumer<TvSearchNotifier>(
+    //   builder: (context, data, child) {
+    //     if (data.state == RequestState.Loading) {
+    //       return Center(
+    //         child: CircularProgressIndicator(),
+    //       );
+    //     } else if (data.state == RequestState.Loaded) {
+    //       final result = data.searchResult;
+    //       return Expanded(
+    //         child: ListView.builder(
+    //           padding: const EdgeInsets.all(8),
+    //           itemBuilder: (context, index) {
+    //             final tv = data.searchResult[index];
+    //             return TvCard(tv);
+    //           },
+    //           itemCount: result.length,
+    //         ),
+    //       );
+    //     } else {
+    //       return Expanded(
+    //         child: Container(),
+    //       );
+    //     }
+    //   },
+    // );
+  }
+
+  Widget _buildMovieSearch() {
+    return BlocBuilder<MovieSearchBloc, MovieSearchState>(
+      builder: (context, state) {
+        if (state is SearchLoading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is SearchHasData) {
+          final result = state.result;
+          return Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemBuilder: (context, index) {
+                final movie = result[index];
+                return MovieCard(movie);
+              },
+              itemCount: result.length,
+            ),
+          );
+        } else if (state is SearchError) {
+          return Expanded(
+            child: Center(
+              child: Text(state.message),
+            ),
+          );
+        } else {
+          return Expanded(
+            child: Container(),
+          );
+        }
+      },
+    );
+
+    // Consumer<MovieSearchNotifier>(
+    //         builder: (context, data, child) {
+    //           if (data.state == RequestState.Loading) {
+    //             return Center(
+    //               child: CircularProgressIndicator(),
+    //             );
+    //           } else if (data.state == RequestState.Loaded) {
+    //             final result = data.searchResult;
+    //             return Expanded(
+    //               child: ListView.builder(
+    //                 padding: const EdgeInsets.all(8),
+    //                 itemBuilder: (context, index) {
+    //                   final movie = data.searchResult[index];
+    //                   return MovieCard(movie);
+    //                 },
+    //                 itemCount: result.length,
+    //               ),
+    //             );
+    //           } else {
+    //             return Expanded(
+    //               child: Container(),
+    //             );
+    //           }
+    //         },
+    //       ),
   }
 }
