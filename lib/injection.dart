@@ -81,8 +81,8 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => WatchlistMovieNotifier(
-      getWatchlistMovies: locator(),
+    () => WatchlistMovieCubit(
+      locator(),
     ),
   );
 
@@ -124,8 +124,8 @@ void init() {
     ),
   );
   locator.registerFactory(
-    () => WatchlistTvNotifier(
-      getWatchlistTvs: locator(),
+    () => WatchlistTvCubit(
+      locator(),
     ),
   );
 
