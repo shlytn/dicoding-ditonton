@@ -26,15 +26,6 @@ import 'package:core/presentation/cubit/tv/on_air_tvs_cubit.dart';
 import 'package:core/presentation/cubit/tv/popular_tvs_cubit.dart';
 import 'package:core/presentation/cubit/tv/top_rated_tvs_cubit.dart';
 import 'package:core/presentation/cubit/tv/tv_detail_cubit.dart';
-import 'package:core/presentation/provider/movie_detail_notifier.dart';
-import 'package:core/presentation/provider/movie_list_notifier.dart';
-import 'package:core/presentation/provider/on_air_tvs_notifier.dart';
-import 'package:core/presentation/provider/popular_movies_notifier.dart';
-import 'package:core/presentation/provider/popular_tvs_notifier.dart';
-import 'package:core/presentation/provider/top_rated_movies_notifier.dart';
-import 'package:core/presentation/provider/top_rated_tvs_notifier.dart';
-import 'package:core/presentation/provider/tv_detail_notifier.dart';
-import 'package:core/presentation/provider/tv_list_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 import 'package:search/search.dart';
@@ -59,13 +50,6 @@ void init() {
 
   // movie
   locator.registerFactory(
-    () => MovieListNotifier(
-      getNowPlayingMovies: locator(),
-      getPopularMovies: locator(),
-      getTopRatedMovies: locator(),
-    ),
-  );
-  locator.registerFactory(
     () => MovieDetailCubit(
       getMovieDetail: locator(),
       getMovieRecommendations: locator(),
@@ -74,11 +58,6 @@ void init() {
       removeWatchlist: locator(),
     ),
   );
-  // locator.registerFactory(
-  //   () => MovieSearchNotifier(
-  //     searchMovies: locator(),
-  //   ),
-  // );
   locator.registerFactory(
         () => NowPlayingMoviesCubit(
       locator(),
@@ -102,13 +81,6 @@ void init() {
 
   // tv
   locator.registerFactory(
-    () => TvListNotifier(
-      getOnAirTvs: locator(),
-      getPopularTvs: locator(),
-      getTopRatedTvs: locator(),
-    ),
-  );
-  locator.registerFactory(
     () => TvDetailCubit(
       getTvDetail: locator(),
       getTvRecommendations: locator(),
@@ -117,11 +89,6 @@ void init() {
       removeWatchlist: locator(),
     ),
   );
-  // locator.registerFactory(
-  //   () => TvSearchNotifier(
-  //     searchTvs: locator(),
-  //   ),
-  // );
   locator.registerFactory(
     () => OnAirTvsCubit(
       locator(),

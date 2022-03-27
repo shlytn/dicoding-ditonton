@@ -2,12 +2,10 @@ import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../presentation/pages/popular_movies_page.dart';
 import '../../presentation/pages/top_rated_movies_page.dart';
-import '../../presentation/provider/movie_list_notifier.dart';
 import '../../presentation/widgets/home_scaffold.dart';
 import '../../presentation/widgets/movie_list.dart';
 import '../../presentation/widgets/sub_heading.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../cubit/movie/now_playing_movies_cubit.dart';
 import '../cubit/movie/popular_movies_cubit.dart';

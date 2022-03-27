@@ -1,14 +1,11 @@
-import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../presentation/pages/on_air_tvs_page.dart';
 import '../../presentation/pages/popular_tvs_page.dart';
 import '../../presentation/pages/top_rated_tvs_page.dart';
-import '../../presentation/provider/tv_list_notifier.dart';
 import '../../presentation/widgets/home_scaffold.dart';
 import '../../presentation/widgets/sub_heading.dart';
 import '../../presentation/widgets/tv_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../cubit/tv/on_air_tvs_cubit.dart';
 import '../cubit/tv/popular_tvs_cubit.dart';

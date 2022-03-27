@@ -1,9 +1,6 @@
-import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../presentation/provider/top_rated_tvs_notifier.dart';
 import '../../presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../cubit/tv/top_rated_tvs_cubit.dart';
 
@@ -19,8 +16,6 @@ class _TopRatedTvsPageState extends State<TopRatedTvsPage> {
   void initState() {
     super.initState();
     Future.microtask(() => context.read<TopRatedTvsCubit>().get());
-    // Provider.of<TopRatedTvsNotifier>(context, listen: false)
-    //     .fetchTopRatedTvs());
   }
 
   @override
@@ -56,29 +51,6 @@ class _TopRatedTvsPageState extends State<TopRatedTvsPage> {
             }
           },
         ),
-
-        // Consumer<TopRatedTvsNotifier>(
-        //   builder: (context, data, child) {
-        //     if (data.state == RequestState.Loading) {
-        //       return Center(
-        //         child: CircularProgressIndicator(),
-        //       );
-        //     } else if (data.state == RequestState.Loaded) {
-        //       return ListView.builder(
-        //         itemBuilder: (context, index) {
-        //           final tv = data.tvs[index];
-        //           return TvCard(tv);
-        //         },
-        //         itemCount: data.tvs.length,
-        //       );
-        //     } else {
-        //       return Center(
-        //         key: Key('error_message'),
-        //         child: Text(data.message),
-        //       );
-        //     }
-        //   },
-        // ),
       ),
     );
   }

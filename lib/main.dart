@@ -17,15 +17,6 @@ import 'package:core/presentation/pages/top_rated_movies_page.dart';
 import 'package:core/presentation/pages/home_tv_page.dart';
 import 'package:core/presentation/pages/top_rated_tvs_page.dart';
 import 'package:core/presentation/pages/tv_detail_page.dart';
-import 'package:core/presentation/provider/movie_detail_notifier.dart';
-import 'package:core/presentation/provider/movie_list_notifier.dart';
-import 'package:core/presentation/provider/on_air_tvs_notifier.dart';
-import 'package:core/presentation/provider/popular_movies_notifier.dart';
-import 'package:core/presentation/provider/popular_tvs_notifier.dart';
-import 'package:core/presentation/provider/top_rated_movies_notifier.dart';
-import 'package:core/presentation/provider/top_rated_tvs_notifier.dart';
-import 'package:core/presentation/provider/tv_detail_notifier.dart';
-import 'package:core/presentation/provider/tv_list_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,15 +35,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieListNotifier>(),
-        ),
         BlocProvider(
           create: (_) => di.locator<MovieDetailCubit>(),
         ),
-        // ChangeNotifierProvider(
-        //   create: (_) => di.locator<MovieSearchNotifier>(),
-        // ),
         BlocProvider(
           create: (_) => di.locator<NowPlayingMoviesCubit>(),
         ),
@@ -62,21 +47,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<PopularMoviesCubit>(),
         ),
-        // ChangeNotifierProvider(
-        //   create: (_) => di.locator<WatchlistMovieNotifier>(),
-        // ),
         BlocProvider(
           create: (_) => di.locator<WatchlistMovieCubit>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvListNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<MovieSearchBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<TvDetailCubit>(),
         ),
-        // ChangeNotifierProvider(
-        //   create: (_) => di.locator<TvSearchNotifier>(),
-        // ),
         BlocProvider(
           create: (_) => di.locator<OnAirTvsCubit>(),
         ),
@@ -86,15 +65,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<PopularTvsCubit>(),
         ),
-        // ChangeNotifierProvider(
-        //   create: (_) => di.locator<WatchlistTvNotifier>(),
-        // ),
         BlocProvider(
           create: (_) => di.locator<WatchlistTvCubit>(),
         ),
-        BlocProvider(
-          create: (_) => di.locator<MovieSearchBloc>(),
-        ),
+
         BlocProvider(
           create: (_) => di.locator<TvSearchBloc>(),
         ),

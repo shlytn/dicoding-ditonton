@@ -1,9 +1,6 @@
-import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../presentation/provider/top_rated_movies_notifier.dart';
 import '../../presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../cubit/movie/top_rated_movies_cubit.dart';
 
@@ -19,8 +16,6 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
   void initState() {
     super.initState();
     Future.microtask(() => context.read<TopRatedMoviesCubit>().get());
-        // Provider.of<TopRatedMoviesNotifier>(context, listen: false)
-        //     .fetchTopRatedMovies());
   }
 
   @override
@@ -56,29 +51,6 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
             }
           },
         ),
-        
-        // Consumer<TopRatedMoviesNotifier>(
-        //   builder: (context, data, child) {
-        //     if (data.state == RequestState.Loading) {
-        //       return Center(
-        //         child: CircularProgressIndicator(),
-        //       );
-        //     } else if (data.state == RequestState.Loaded) {
-        //       return ListView.builder(
-        //         itemBuilder: (context, index) {
-        //           final movie = data.movies[index];
-        //           return MovieCard(movie);
-        //         },
-        //         itemCount: data.movies.length,
-        //       );
-        //     } else {
-        //       return Center(
-        //         key: Key('error_message'),
-        //         child: Text(data.message),
-        //       );
-        //     }
-        //   },
-        // ),
       ),
     );
   }

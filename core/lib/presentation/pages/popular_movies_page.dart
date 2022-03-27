@@ -1,10 +1,7 @@
-import 'package:core/core.dart';
 import 'package:core/presentation/cubit/movie/popular_movies_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../presentation/provider/popular_movies_notifier.dart';
 import '../../presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class PopularMoviesPage extends StatefulWidget {
   static const ROUTE_NAME = '/popular-movie';
@@ -18,8 +15,6 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
   void initState() {
     super.initState();
     Future.microtask(() => context.read<PopularMoviesCubit>().get());
-    // Provider.of<PopularMoviesNotifier>(context, listen: false)
-    //     .fetchPopularMovies());
   }
 
   @override
@@ -55,28 +50,6 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
             }
           },
         ),
-        // Consumer<PopularMoviesNotifier>(
-        //   builder: (context, data, child) {
-        //     if (data.state == RequestState.Loading) {
-        //       return Center(
-        //         child: CircularProgressIndicator(),
-        //       );
-        //     } else if (data.state == RequestState.Loaded) {
-        //       return ListView.builder(
-        //         itemBuilder: (context, index) {
-        //           final movie = data.movies[index];
-        //           return MovieCard(movie);
-        //         },
-        //         itemCount: data.movies.length,
-        //       );
-        //     } else {
-        //       return Center(
-        //         key: Key('error_message'),
-        //         child: Text(data.message),
-        //       );
-        //     }
-        //   },
-        // ),
       ),
     );
   }

@@ -2,11 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/entities/genre.dart';
-import '../../presentation/provider/tv_detail_notifier.dart';
 import '../../presentation/widgets/season_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:provider/provider.dart';
 
 import '../cubit/tv/tv_detail_cubit.dart';
 
@@ -124,10 +122,10 @@ class DetailContent extends StatelessWidget {
                                     .watchlistMessage;
 
                                 if (message ==
-                                        TvDetailNotifier
+                                        TvDetailCubit
                                             .watchlistAddSuccessMessage ||
                                     message ==
-                                        TvDetailNotifier
+                                        TvDetailCubit
                                             .watchlistRemoveSuccessMessage) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(content: Text(message)));
