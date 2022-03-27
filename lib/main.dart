@@ -1,11 +1,13 @@
 import 'package:about/about.dart';
 import 'package:core/core.dart';
+import 'package:core/presentation/cubit/movie/movie_detail_cubit.dart';
 import 'package:core/presentation/cubit/movie/now_playing_movies_cubit.dart';
 import 'package:core/presentation/cubit/movie/popular_movies_cubit.dart';
 import 'package:core/presentation/cubit/movie/top_rated_movies_cubit.dart';
 import 'package:core/presentation/cubit/tv/on_air_tvs_cubit.dart';
 import 'package:core/presentation/cubit/tv/popular_tvs_cubit.dart';
 import 'package:core/presentation/cubit/tv/top_rated_tvs_cubit.dart';
+import 'package:core/presentation/cubit/tv/tv_detail_cubit.dart';
 import 'package:core/presentation/pages/movie_detail_page.dart';
 import 'package:core/presentation/pages/home_movie_page.dart';
 import 'package:core/presentation/pages/on_air_tvs_page.dart';
@@ -45,8 +47,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<MovieListNotifier>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<MovieDetailNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<MovieDetailCubit>(),
         ),
         // ChangeNotifierProvider(
         //   create: (_) => di.locator<MovieSearchNotifier>(),
@@ -69,8 +71,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<TvListNotifier>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvDetailNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<TvDetailCubit>(),
         ),
         // ChangeNotifierProvider(
         //   create: (_) => di.locator<TvSearchNotifier>(),
