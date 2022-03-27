@@ -11,9 +11,9 @@ export 'domain/usecases/get_watchlist_tv_status.dart';
 export 'domain/usecases/save_watchlist_tv.dart';
 export 'domain/usecases/remove_watchlist_tv.dart';
 
-// provider
-export 'presentation/provider/watchlist_movie_notifier.dart';
-export 'presentation/provider/watchlist_tv_notifier.dart';
+// bloc
+export 'presentation/cubit/watchlist_movie_cubit.dart';
+export 'presentation/cubit/watchlist_tv_cubit.dart';
 
 // pages
 export 'presentation/pages/watchlist_page.dart';

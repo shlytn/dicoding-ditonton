@@ -1,9 +1,8 @@
 import 'package:core/core.dart';
 import 'package:core/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../provider/watchlist_movie_notifier.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watchlist/presentation/cubit/watchlist_movie_cubit.dart';
 
 class WatchlistMoviesPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist-movie';
@@ -17,9 +16,7 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<WatchlistMovieNotifier>(context, listen: false)
-            .fetchWatchlistMovies());
+    Future.microtask(() => context.read<WatchlistMovieCubit>().get());
   }
 
   @override
@@ -29,34 +26,35 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   }
 
   void didPopNext() {
-    Provider.of<WatchlistMovieNotifier>(context, listen: false)
-        .fetchWatchlistMovies();
+    context.read<WatchlistMovieCubit>().get();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<WatchlistMovieNotifier>(
-      builder: (context, data, child) {
-        if (data.watchlistState == RequestState.Loading) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (data.watchlistState == RequestState.Loaded) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              final movie = data.watchlistMovies[index];
-              return MovieCard(movie);
-            },
-            itemCount: data.watchlistMovies.length,
-          );
-        } else {
-          return Center(
-            key: Key('error_message'),
-            child: Text(data.message),
-          );
-        }
-      },
-    );
+    return BlocBuilder<WatchlistMovieCubit, WatchlistMovieState>(
+        builder: (context, state) {
+      if (state is WatchlistMovieLoading) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (state is WatchlistMovieHasData) {
+        final result = state.result;
+        return ListView.builder(
+          itemBuilder: (context, index) {
+            final movie = result[index];
+            return MovieCard(movie);
+          },
+          itemCount: result.length,
+        );
+      } else if (state is WatchlistMovieError) {
+        return Center(
+          key: Key('error_message'),
+          child: Text(state.message),
+        );
+      } else {
+        return Container();
+      }
+    });
   }
 
   @override

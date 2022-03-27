@@ -1,9 +1,8 @@
 import 'package:core/core.dart';
 import 'package:core/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../provider/watchlist_tv_notifier.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watchlist/presentation/cubit/watchlist_tv_cubit.dart';
 
 class WatchlistTvsPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist-tv';
@@ -16,9 +15,7 @@ class _WatchlistTvsPageState extends State<WatchlistTvsPage> with RouteAware {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<WatchlistTvNotifier>(context, listen: false)
-            .fetchWatchlistTvs());
+    Future.microtask(() => context.read<WatchlistTvCubit>().get());
   }
 
   @override
@@ -28,34 +25,35 @@ class _WatchlistTvsPageState extends State<WatchlistTvsPage> with RouteAware {
   }
 
   void didPopNext() {
-    Provider.of<WatchlistTvNotifier>(context, listen: false)
-        .fetchWatchlistTvs();
+    context.read<WatchlistTvCubit>().get();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<WatchlistTvNotifier>(
-      builder: (context, data, child) {
-        if (data.watchlistState == RequestState.Loading) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (data.watchlistState == RequestState.Loaded) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              final tv = data.watchlistTvs[index];
-              return TvCard(tv);
-            },
-            itemCount: data.watchlistTvs.length,
-          );
-        } else {
-          return Center(
-            key: Key('error_message'),
-            child: Text(data.message),
-          );
-        }
-      },
-    );
+    return BlocBuilder<WatchlistTvCubit, WatchlistTvState>(
+        builder: (context, state) {
+      if (state is WatchlistTvLoading) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (state is WatchlistTvHasData) {
+        final result = state.result;
+        return ListView.builder(
+          itemBuilder: (context, index) {
+            final tv = result[index];
+            return TvCard(tv);
+          },
+          itemCount: result.length,
+        );
+      } else if (state is WatchlistTvError) {
+        return Center(
+          key: Key('error_message'),
+          child: Text(state.message),
+        );
+      } else {
+        return Container();
+      }
+    });
   }
 
   @override
