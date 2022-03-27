@@ -18,6 +18,12 @@ import 'package:core/domain/usecases/get_top_rated_movies.dart';
 import 'package:core/domain/usecases/get_top_rated_tvs.dart';
 import 'package:core/domain/usecases/get_tv_detail.dart';
 import 'package:core/domain/usecases/get_tv_recommendations.dart';
+import 'package:core/presentation/cubit/movie/now_playing_movies_cubit.dart';
+import 'package:core/presentation/cubit/movie/popular_movies_cubit.dart';
+import 'package:core/presentation/cubit/movie/top_rated_movies_cubit.dart';
+import 'package:core/presentation/cubit/tv/on_air_tvs_cubit.dart';
+import 'package:core/presentation/cubit/tv/popular_tvs_cubit.dart';
+import 'package:core/presentation/cubit/tv/top_rated_tvs_cubit.dart';
 import 'package:core/presentation/provider/movie_detail_notifier.dart';
 import 'package:core/presentation/provider/movie_list_notifier.dart';
 import 'package:core/presentation/provider/on_air_tvs_notifier.dart';
@@ -46,6 +52,7 @@ void init() {
       locator(),
     ),
   );
+
   // provider
 
   // movie
@@ -71,13 +78,18 @@ void init() {
   //   ),
   // );
   locator.registerFactory(
-    () => PopularMoviesNotifier(
+        () => NowPlayingMoviesCubit(
       locator(),
     ),
   );
   locator.registerFactory(
-    () => TopRatedMoviesNotifier(
-      getTopRatedMovies: locator(),
+    () => PopularMoviesCubit(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TopRatedMoviesCubit(
+      locator(),
     ),
   );
   locator.registerFactory(
@@ -109,18 +121,18 @@ void init() {
   //   ),
   // );
   locator.registerFactory(
-    () => OnAirTvsNotifier(
-      getOnAirTvs: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => PopularTvsNotifier(
+    () => OnAirTvsCubit(
       locator(),
     ),
   );
   locator.registerFactory(
-    () => TopRatedTvsNotifier(
-      getTopRatedTvs: locator(),
+    () => PopularTvsCubit(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TopRatedTvsCubit(
+      locator(),
     ),
   );
   locator.registerFactory(

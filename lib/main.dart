@@ -1,5 +1,11 @@
 import 'package:about/about.dart';
 import 'package:core/core.dart';
+import 'package:core/presentation/cubit/movie/now_playing_movies_cubit.dart';
+import 'package:core/presentation/cubit/movie/popular_movies_cubit.dart';
+import 'package:core/presentation/cubit/movie/top_rated_movies_cubit.dart';
+import 'package:core/presentation/cubit/tv/on_air_tvs_cubit.dart';
+import 'package:core/presentation/cubit/tv/popular_tvs_cubit.dart';
+import 'package:core/presentation/cubit/tv/top_rated_tvs_cubit.dart';
 import 'package:core/presentation/pages/movie_detail_page.dart';
 import 'package:core/presentation/pages/home_movie_page.dart';
 import 'package:core/presentation/pages/on_air_tvs_page.dart';
@@ -45,11 +51,14 @@ class MyApp extends StatelessWidget {
         // ChangeNotifierProvider(
         //   create: (_) => di.locator<MovieSearchNotifier>(),
         // ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TopRatedMoviesNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<NowPlayingMoviesCubit>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<PopularMoviesNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<TopRatedMoviesCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<PopularMoviesCubit>(),
         ),
         // ChangeNotifierProvider(
         //   create: (_) => di.locator<WatchlistMovieNotifier>(),
@@ -66,14 +75,14 @@ class MyApp extends StatelessWidget {
         // ChangeNotifierProvider(
         //   create: (_) => di.locator<TvSearchNotifier>(),
         // ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<OnAirTvsNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<OnAirTvsCubit>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TopRatedTvsNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<TopRatedTvsCubit>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<PopularTvsNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<PopularTvsCubit>(),
         ),
         // ChangeNotifierProvider(
         //   create: (_) => di.locator<WatchlistTvNotifier>(),

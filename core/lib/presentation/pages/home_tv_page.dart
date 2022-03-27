@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../presentation/pages/on_air_tvs_page.dart';
 import '../../presentation/pages/popular_tvs_page.dart';
 import '../../presentation/pages/top_rated_tvs_page.dart';
@@ -8,6 +9,10 @@ import '../../presentation/widgets/sub_heading.dart';
 import '../../presentation/widgets/tv_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../cubit/tv/on_air_tvs_cubit.dart';
+import '../cubit/tv/popular_tvs_cubit.dart';
+import '../cubit/tv/top_rated_tvs_cubit.dart';
 
 class HomeTvPage extends StatefulWidget {
   static const ROUTE_NAME = '/home-tv';
@@ -20,10 +25,11 @@ class _HomeTvPageState extends State<HomeTvPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => Provider.of<TvListNotifier>(context, listen: false)
-      ..fetchOnAirTvs()
-      ..fetchPopularTvs()
-      ..fetchTopRatedTvs());
+    Future.microtask(() {
+      context.read<OnAirTvsCubit>().get();
+      context.read<PopularTvsCubit>().get();
+      context.read<TopRatedTvsCubit>().get();
+    });
   }
 
   @override
@@ -41,56 +47,73 @@ class _HomeTvPageState extends State<HomeTvPage> {
                 onTap: () =>
                     Navigator.pushNamed(context, OnAirTvsPage.ROUTE_NAME),
               ),
-              Consumer<TvListNotifier>(builder: (context, data, child) {
-                final state = data.onAirState;
-                if (state == RequestState.Loading) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state == RequestState.Loaded) {
-                  return TvList(data.onAirTvs);
-                } else {
-                  return Text('Failed');
-                }
-              }),
+              _loadOnAirTvList(),
               SubHeading(
                 title: 'Popular',
                 onTap: () =>
                     Navigator.pushNamed(context, PopularTvsPage.ROUTE_NAME),
               ),
-              Consumer<TvListNotifier>(builder: (context, data, child) {
-                final state = data.popularTvsState;
-                if (state == RequestState.Loading) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state == RequestState.Loaded) {
-                  return TvList(data.popularTvs);
-                } else {
-                  return Text('Failed');
-                }
-              }),
+              _loadPopularTvList(),
               SubHeading(
                 title: 'Top Rated',
                 onTap: () =>
                     Navigator.pushNamed(context, TopRatedTvsPage.ROUTE_NAME),
               ),
-              Consumer<TvListNotifier>(builder: (context, data, child) {
-                final state = data.topRatedTvsState;
-                if (state == RequestState.Loading) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state == RequestState.Loaded) {
-                  return TvList(data.topRatedTvs);
-                } else {
-                  return Text('Failed');
-                }
-              }),
+              _loadTopRatedTvList(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget _loadOnAirTvList() {
+    return BlocBuilder<OnAirTvsCubit, OnAirTvsState>(builder: (context, state) {
+      if (state is OnAirTvsLoading) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (state is OnAirTvsLoaded) {
+        return TvList(state.result);
+      } else if (state is OnAirTvsError) {
+        return Center(child: Text(state.message));
+      } else {
+        return Container();
+      }
+    });
+  }
+
+  Widget _loadPopularTvList() {
+    return BlocBuilder<PopularTvsCubit, PopularTvsState>(
+        builder: (context, state) {
+      if (state is PopularTvsLoading) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (state is PopularTvsLoaded) {
+        return TvList(state.result);
+      } else if (state is PopularTvsError) {
+        return Center(child: Text(state.message));
+      } else {
+        return Container();
+      }
+    });
+  }
+
+  Widget _loadTopRatedTvList() {
+    return BlocBuilder<TopRatedTvsCubit, TopRatedTvsState>(
+        builder: (context, state) {
+      if (state is TopRatedTvsLoading) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (state is TopRatedTvsLoaded) {
+        return TvList(state.result);
+      } else if (state is TopRatedTvsError) {
+        return Center(child: Text(state.message));
+      } else {
+        return Container();
+      }
+    });
   }
 }
