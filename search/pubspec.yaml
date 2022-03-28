@@ -13,15 +13,15 @@ dependencies:
     sdk: flutter
   core:
     path: ../core
-  dartz: ^0.10.1
+  dartz: ^0.10.0-nullsafety.2
   flutter_bloc: ^7.1.0
   rxdart: ^0.27.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.1.0
-  build_runner: ^2.1.8
+  mockito: ^5.0.8
+  build_runner: ^2.0.4
   bloc_test: ^8.5.0
 
 # For information on the generic Dart part of this file, see the
