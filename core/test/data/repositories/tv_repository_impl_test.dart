@@ -101,6 +101,19 @@ void main() {
       expect(result,
           equals(Left(ConnectionFailure('Failed to connect to the network'))));
     });
+
+    test(
+        'should return certification failure when the call to remote data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getOnAirTvs())
+              .thenThrow(TlsException());
+          // act
+          final result = await repository.getOnAirTvs();
+          // assert
+          verify(mockRemoteDataSource.getOnAirTvs());
+          expect(result, equals(Left(CommonFailure('Certificated not valid\n'))));
+        });
   });
 
   group('Popular Tvs', () {
@@ -139,6 +152,19 @@ void main() {
       expect(
           result, Left(ConnectionFailure('Failed to connect to the network')));
     });
+
+    test(
+        'should return certification failure when the call to remote data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getPopularTvs())
+              .thenThrow(TlsException());
+          // act
+          final result = await repository.getPopularTvs();
+          // assert
+          verify(mockRemoteDataSource.getPopularTvs());
+          expect(result, Left(CommonFailure('Certificated not valid\n')));
+        });
   });
 
   group('Top Rated Tvs', () {
@@ -177,6 +203,19 @@ void main() {
       expect(
           result, Left(ConnectionFailure('Failed to connect to the network')));
     });
+
+    test(
+        'should return certification failure when the call to remote data source is unsuccessful',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getTopRatedTvs())
+              .thenThrow(TlsException());
+          // act
+          final result = await repository.getTopRatedTvs();
+          // assert
+          verify(mockRemoteDataSource.getTopRatedTvs());
+          expect(result, equals(Left(CommonFailure('Certificated not valid\n'))));
+        });
   });
 
   group('Get Tv Detail', () {

@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:core/data/datasources/db/database_helper.dart';
 import 'package:core/data/datasources/db/database_helper_tv.dart';
 import 'package:core/data/datasources/movie_local_data_source.dart';
@@ -6,27 +7,6 @@ import 'package:core/data/datasources/tv_local_data_source.dart';
 import 'package:core/data/datasources/tv_remote_data_source.dart';
 import 'package:core/data/repositories/movie_repository_impl.dart';
 import 'package:core/data/repositories/tv_repository_impl.dart';
-import 'package:core/domain/repositories/movie_repository.dart';
-import 'package:core/domain/repositories/tv_repository.dart';
-import 'package:core/domain/usecases/get_movie_detail.dart';
-import 'package:core/domain/usecases/get_movie_recommendations.dart';
-import 'package:core/domain/usecases/get_now_playing_movies.dart';
-import 'package:core/domain/usecases/get_on_air_tvs.dart';
-import 'package:core/domain/usecases/get_popular_movies.dart';
-import 'package:core/domain/usecases/get_popular_tvs.dart';
-import 'package:core/domain/usecases/get_top_rated_movies.dart';
-import 'package:core/domain/usecases/get_top_rated_tvs.dart';
-import 'package:core/domain/usecases/get_tv_detail.dart';
-import 'package:core/domain/usecases/get_tv_recommendations.dart';
-import 'package:core/presentation/cubit/movie/movie_detail_cubit.dart';
-import 'package:core/presentation/cubit/movie/now_playing_movies_cubit.dart';
-import 'package:core/presentation/cubit/movie/popular_movies_cubit.dart';
-import 'package:core/presentation/cubit/movie/top_rated_movies_cubit.dart';
-import 'package:core/presentation/cubit/tv/on_air_tvs_cubit.dart';
-import 'package:core/presentation/cubit/tv/popular_tvs_cubit.dart';
-import 'package:core/presentation/cubit/tv/top_rated_tvs_cubit.dart';
-import 'package:core/presentation/cubit/tv/tv_detail_cubit.dart';
-import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 import 'package:search/search.dart';
 import 'package:watchlist/watchlist.dart';
@@ -167,5 +147,5 @@ void init() {
   locator.registerLazySingleton<DatabaseHelperTv>(() => DatabaseHelperTv());
 
   // external
-  locator.registerLazySingleton(() => http.Client());
+  locator.registerLazySingleton(() => HttpSSLPinning.client);
 }

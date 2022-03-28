@@ -17,7 +17,9 @@ import 'package:ditonton/injection.dart' as di;
 import 'package:search/search.dart';
 import 'package:watchlist/watchlist.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HttpSSLPinning.init();
   di.init();
   runApp(MyApp());
 }
