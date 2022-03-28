@@ -1,41 +1,56 @@
-import '../../../../core/lib/utils/state_enum.dart';
-import '../../../../core/lib/domain/entities/movie.dart';
-import '../../../../core/lib/domain/entities/tv.dart';
-import '../../../lib/presentation/pages/watchlist_movies_page.dart';
-import '../../../lib/presentation/pages/watchlist_tv_page.dart';
-import '../../../lib/presentation/provider/watchlist_movie_notifier.dart';
-import '../../../lib/presentation/provider/watchlist_tv_notifier.dart';
+import 'package:bloc_test/bloc_test.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watchlist/presentation/pages/watchlist_movies_page.dart';
+import 'package:watchlist/presentation/pages/watchlist_tv_page.dart';
+import 'package:watchlist/watchlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'watchlist_page_test.mocks.dart';
+import '../../dummy_data/dummy_objects.dart';
 
-@GenerateMocks([WatchlistTvNotifier, WatchlistMovieNotifier])
+class MockWatchlistTvCubit extends MockCubit<WatchlistTvState>
+    implements WatchlistTvCubit {}
+
+class WatchlistTvStateFake extends Fake implements WatchlistTvState {}
+
+class MockWatchlistMovieCubit extends MockCubit<WatchlistMovieState>
+    implements WatchlistMovieCubit {}
+
+class WatchlistMovieStateFake extends Fake implements WatchlistMovieState {}
+
 void main() {
-  late MockWatchlistTvNotifier mockTvNotifier;
-  late MockWatchlistMovieNotifier mockMovieNotifier;
+  late MockWatchlistTvCubit mockTvCubit;
+  late MockWatchlistMovieCubit mockMovieCubit;
+
+  setUpAll(() {
+    registerFallbackValue(WatchlistTvStateFake());
+    registerFallbackValue(WatchlistMovieStateFake());
+  });
 
   setUp(() {
-    mockTvNotifier = MockWatchlistTvNotifier();
-    mockMovieNotifier = MockWatchlistMovieNotifier();
+    mockTvCubit = MockWatchlistTvCubit();
+    mockMovieCubit = MockWatchlistMovieCubit();
   });
 
   group('Watchlist Tv', () {
     Widget _makeTestableWidget(Widget body) {
-      return ChangeNotifierProvider<WatchlistTvNotifier>.value(
-        value: mockTvNotifier,
+      return BlocProvider<WatchlistTvCubit>.value(
+        value: mockTvCubit,
         child: MaterialApp(
           home: body,
         ),
       );
     }
 
+    void init() {
+      when(() => mockTvCubit.get()).thenAnswer((_) => Future.value());
+    }
+
     testWidgets('Page should display progress bar when loading',
         (WidgetTester tester) async {
-      when(mockTvNotifier.watchlistState).thenReturn(RequestState.Loading);
+      when(() => mockTvCubit.state).thenReturn(WatchlistTvLoading());
+      init();
 
       final progressFinder = find.byType(CircularProgressIndicator);
       final centerFinder = find.byType(Center);
@@ -48,24 +63,24 @@ void main() {
 
     testWidgets('Page should display when data is loaded',
         (WidgetTester tester) async {
-      when(mockTvNotifier.watchlistState).thenReturn(RequestState.Loaded);
-      when(mockTvNotifier.watchlistTvs).thenReturn(<Tv>[]);
+      when(() => mockTvCubit.state).thenReturn(WatchlistTvHasData([testWatchlistTv]));
+      init();
 
       final listViewFinder = find.byType(ListView);
 
-      await tester.pumpWidget(_makeTestableWidget(WatchlistTvsPage()));
+      await tester.pumpWidget(_makeTestableWidget(WatchlistPage()));
 
       expect(listViewFinder, findsOneWidget);
     });
 
     testWidgets('Page should display text with message when Error',
         (WidgetTester tester) async {
-      when(mockTvNotifier.watchlistState).thenReturn(RequestState.Error);
-      when(mockTvNotifier.message).thenReturn('Error message');
+      when(() => mockTvCubit.state).thenReturn(WatchlistTvError('Error Message'));
+      init();
 
       final textFinder = find.byKey(Key('error_message'));
 
-      await tester.pumpWidget(_makeTestableWidget(WatchlistTvsPage()));
+      await tester.pumpWidget(_makeTestableWidget(WatchlistPage()));
 
       expect(textFinder, findsOneWidget);
     });
@@ -73,17 +88,22 @@ void main() {
 
   group('Watchlist Movie', () {
     Widget _makeTestableWidget(Widget body) {
-      return ChangeNotifierProvider<WatchlistMovieNotifier>.value(
-        value: mockMovieNotifier,
+      return BlocProvider<WatchlistMovieCubit>.value(
+        value: mockMovieCubit,
         child: MaterialApp(
           home: body,
         ),
       );
     }
 
+    void init() {
+      when(() => mockMovieCubit.get()).thenAnswer((_) => Future.value());
+    }
+
     testWidgets('Page should display progress bar when loading',
         (WidgetTester tester) async {
-      when(mockMovieNotifier.watchlistState).thenReturn(RequestState.Loading);
+      when(() => mockMovieCubit.state).thenReturn(WatchlistMovieLoading());
+      init();
 
       final progressFinder = find.byType(CircularProgressIndicator);
       final centerFinder = find.byType(Center);
@@ -96,8 +116,8 @@ void main() {
 
     testWidgets('Page should display when data is loaded',
         (WidgetTester tester) async {
-      when(mockMovieNotifier.watchlistState).thenReturn(RequestState.Loaded);
-      when(mockMovieNotifier.watchlistMovies).thenReturn(<Movie>[]);
+      when(() => mockMovieCubit.state).thenReturn(WatchlistMovieHasData([]));
+      init();
 
       final listViewFinder = find.byType(ListView);
 
@@ -108,8 +128,9 @@ void main() {
 
     testWidgets('Page should display text with message when Error',
         (WidgetTester tester) async {
-      when(mockMovieNotifier.watchlistState).thenReturn(RequestState.Error);
-      when(mockMovieNotifier.message).thenReturn('Error message');
+      when(() => mockMovieCubit.state)
+          .thenReturn(WatchlistMovieError('Error message'));
+      init();
 
       final textFinder = find.byKey(Key('error_message'));
 

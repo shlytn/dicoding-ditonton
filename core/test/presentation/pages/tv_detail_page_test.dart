@@ -1,27 +1,40 @@
-import '../../../lib/utils/state_enum.dart';
-import '../../../lib/domain/entities/tv.dart';
-import '../../../lib/presentation/pages/tv_detail_page.dart';
-import '../../../lib/presentation/provider/tv_detail_notifier.dart';
+import 'package:bloc_test/bloc_test.dart';
+import 'package:core/core.dart';
+import 'package:core/presentation/pages/tv_detail_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
+import 'package:mocktail/mocktail.dart';
 
 import '../../dummy_data/dummy_objects.dart';
-import 'tv_detail_page_test.mocks.dart';
 
-@GenerateMocks([TvDetailNotifier])
+class MockTvDetailCubit extends MockCubit<TvDetailState>
+    implements TvDetailCubit {}
+
+class TvDetailStateFake extends Fake implements TvDetailState {}
+
 void main() {
-  late MockTvDetailNotifier mockNotifier;
+  late MockTvDetailCubit mockCubit;
+  late TvDetailState initState;
 
-  setUp(() {
-    mockNotifier = MockTvDetailNotifier();
+  setUpAll(() {
+    registerFallbackValue(TvDetailStateFake());
   });
 
+  setUp(() {
+    mockCubit = MockTvDetailCubit();
+    initState = TvDetailState.init();
+  });
+
+  void init() {
+    when(() => mockCubit.get(any())).thenAnswer((_) => Future.value());
+    when(() => mockCubit.loadWatchlistStatus(any()))
+        .thenAnswer((_) => Future.value());
+  }
+
   Widget _makeTestableWidget(Widget body) {
-    return ChangeNotifierProvider<TvDetailNotifier>.value(
-      value: mockNotifier,
+    return BlocProvider<TvDetailCubit>.value(
+      value: mockCubit,
       child: MaterialApp(
         home: body,
       ),
@@ -31,11 +44,14 @@ void main() {
   testWidgets(
       'Watchlist button should display add icon when tv not added to watchlist',
       (WidgetTester tester) async {
-    when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.tv).thenReturn(testTvDetail);
-    when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.tvRecommendations).thenReturn(<Tv>[]);
-    when(mockNotifier.isAddedToWatchlist).thenReturn(false);
+    init();
+    when(() => mockCubit.state).thenReturn(initState.copyWith(
+      tvDetailState: RequestState.Loaded,
+      tvDetail: testTvDetail,
+      tvRecommendationsState: RequestState.Loaded,
+      tvRecommendations: [],
+      isAddedToWatchlist: false,
+    ));
 
     final watchlistButtonIcon = find.byIcon(Icons.add);
 
@@ -45,13 +61,16 @@ void main() {
   });
 
   testWidgets(
-      'Watchlist button should display check icon when tv is added to watchclist',
+      'Watchlist button should display check icon when tv is added to watchlist',
       (WidgetTester tester) async {
-    when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.tv).thenReturn(testTvDetail);
-    when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.tvRecommendations).thenReturn(<Tv>[]);
-    when(mockNotifier.isAddedToWatchlist).thenReturn(true);
+    init();
+    when(() => mockCubit.state).thenReturn(initState.copyWith(
+      tvDetailState: RequestState.Loaded,
+      tvDetail: testTvDetail,
+      tvRecommendationsState: RequestState.Loaded,
+      tvRecommendations: [],
+      isAddedToWatchlist: true,
+    ));
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
 
@@ -63,12 +82,17 @@ void main() {
   testWidgets(
       'Watchlist button should display Snackbar when added to watchlist',
       (WidgetTester tester) async {
-    when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.tv).thenReturn(testTvDetail);
-    when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.tvRecommendations).thenReturn(<Tv>[]);
-    when(mockNotifier.isAddedToWatchlist).thenReturn(false);
-    when(mockNotifier.watchlistMessage).thenReturn('Added to Watchlist');
+    init();
+    when(() => mockCubit.addWatchlist(testTvDetail))
+        .thenAnswer((_) => Future.value());
+    when(() => mockCubit.state).thenReturn(initState.copyWith(
+      tvDetailState: RequestState.Loaded,
+      tvDetail: testTvDetail,
+      tvRecommendationsState: RequestState.Loaded,
+      tvRecommendations: [],
+      isAddedToWatchlist: false,
+      watchlistMessage: 'Added to Watchlist',
+    ));
 
     final watchlistButton = find.byType(ElevatedButton);
 
@@ -86,12 +110,17 @@ void main() {
   testWidgets(
       'Watchlist button should display AlertDialog when add to watchlist failed',
       (WidgetTester tester) async {
-    when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.tv).thenReturn(testTvDetail);
-    when(mockNotifier.recommendationState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.tvRecommendations).thenReturn(<Tv>[]);
-    when(mockNotifier.isAddedToWatchlist).thenReturn(false);
-    when(mockNotifier.watchlistMessage).thenReturn('Failed');
+    init();
+    when(() => mockCubit.addWatchlist(testTvDetail))
+        .thenAnswer((_) => Future.value());
+    when(() => mockCubit.state).thenReturn(initState.copyWith(
+      tvDetailState: RequestState.Loaded,
+      tvDetail: testTvDetail,
+      tvRecommendationsState: RequestState.Loaded,
+      tvRecommendations: [],
+      isAddedToWatchlist: false,
+      watchlistMessage: 'Failed',
+    ));
 
     final watchlistButton = find.byType(ElevatedButton);
 

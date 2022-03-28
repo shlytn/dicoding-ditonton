@@ -1,26 +1,34 @@
-import '../../../lib/utils/state_enum.dart';
-import '../../../lib/domain/entities/tv.dart';
-import '../../../lib/presentation/pages/popular_tvs_page.dart';
-import '../../../lib/presentation/provider/popular_tvs_notifier.dart';
+import 'package:bloc_test/bloc_test.dart';
+import 'package:core/core.dart';
+import 'package:core/presentation/pages/popular_tvs_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'popular_tvs_page_test.mocks.dart';
+class MockPopularTvsCubit extends MockCubit<PopularTvsState>
+    implements PopularTvsCubit {}
 
-@GenerateMocks([PopularTvsNotifier])
+class PopularTvsStateFake extends Fake implements PopularTvsState {}
+
 void main() {
-  late MockPopularTvsNotifier mockNotifier;
+  late MockPopularTvsCubit mockCubit;
 
-  setUp(() {
-    mockNotifier = MockPopularTvsNotifier();
+  setUpAll(() {
+    registerFallbackValue(PopularTvsStateFake());
   });
 
+  setUp(() {
+    mockCubit = MockPopularTvsCubit();
+  });
+
+  void init() {
+    when(() => mockCubit.get()).thenAnswer((_) => Future.value());
+  }
+
   Widget _makeTestableWidget(Widget body) {
-    return ChangeNotifierProvider<PopularTvsNotifier>.value(
-      value: mockNotifier,
+    return BlocProvider<PopularTvsCubit>.value(
+      value: mockCubit,
       child: MaterialApp(
         home: body,
       ),
@@ -29,7 +37,8 @@ void main() {
 
   testWidgets('Page should display center progress bar when loading',
       (WidgetTester tester) async {
-    when(mockNotifier.state).thenReturn(RequestState.Loading);
+    when(() => mockCubit.state).thenReturn(PopularTvsLoading());
+    init();
 
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
@@ -42,8 +51,8 @@ void main() {
 
   testWidgets('Page should display ListView when data is loaded',
       (WidgetTester tester) async {
-    when(mockNotifier.state).thenReturn(RequestState.Loaded);
-    when(mockNotifier.tvs).thenReturn(<Tv>[]);
+    when(() => mockCubit.state).thenReturn(PopularTvsLoaded([]));
+    init();
 
     final listViewFinder = find.byType(ListView);
 
@@ -54,8 +63,8 @@ void main() {
 
   testWidgets('Page should display text with message when Error',
       (WidgetTester tester) async {
-    when(mockNotifier.state).thenReturn(RequestState.Error);
-    when(mockNotifier.message).thenReturn('Error message');
+    when(() => mockCubit.state).thenReturn(PopularTvsError('Error message'));
+    init();
 
     final textFinder = find.byKey(Key('error_message'));
 

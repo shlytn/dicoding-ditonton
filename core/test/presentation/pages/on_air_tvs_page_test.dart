@@ -1,27 +1,34 @@
-import '../../../lib/utils/state_enum.dart';
-import '../../../lib/domain/entities/tv.dart';
-import '../../../lib/presentation/pages/on_air_tvs_page.dart';
-import '../../../lib/presentation/provider/on_air_tvs_notifier.dart';
+import 'package:bloc_test/bloc_test.dart';
+import 'package:core/presentation/cubit/tv/on_air_tvs_cubit.dart';
+import 'package:core/presentation/pages/on_air_tvs_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'on_air_tvs_page_test.mocks.dart';
+class MockOnAirTvsCubit extends MockCubit<OnAirTvsState>
+    implements OnAirTvsCubit {}
 
+class OnAirTvsStateFake extends Fake implements OnAirTvsState {}
 
-@GenerateMocks([OnAirTvsNotifier])
 void main() {
-  late MockOnAirTvsNotifier mockNotifier;
+  late MockOnAirTvsCubit mockCubit;
 
-  setUp(() {
-    mockNotifier = MockOnAirTvsNotifier();
+  setUpAll(() {
+    registerFallbackValue(OnAirTvsStateFake());
   });
 
+  setUp(() {
+    mockCubit = MockOnAirTvsCubit();
+  });
+
+  void init() {
+    when(() => mockCubit.get()).thenAnswer((_) => Future.value());
+  }
+
   Widget _makeTestableWidget(Widget body) {
-    return ChangeNotifierProvider<OnAirTvsNotifier>.value(
-      value: mockNotifier,
+    return BlocProvider<OnAirTvsCubit>.value(
+      value: mockCubit,
       child: MaterialApp(
         home: body,
       ),
@@ -30,7 +37,8 @@ void main() {
 
   testWidgets('Page should display center progress bar when loading',
       (WidgetTester tester) async {
-    when(mockNotifier.state).thenReturn(RequestState.Loading);
+    when(() => mockCubit.state).thenReturn(OnAirTvsLoading());
+    init();
 
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
@@ -43,8 +51,8 @@ void main() {
 
   testWidgets('Page should display ListView when data is loaded',
       (WidgetTester tester) async {
-    when(mockNotifier.state).thenReturn(RequestState.Loaded);
-    when(mockNotifier.tvs).thenReturn(<Tv>[]);
+    when(() => mockCubit.state).thenReturn(OnAirTvsLoaded([]));
+    init();
 
     final listViewFinder = find.byType(ListView);
 
@@ -55,8 +63,8 @@ void main() {
 
   testWidgets('Page should display text with message when Error',
       (WidgetTester tester) async {
-    when(mockNotifier.state).thenReturn(RequestState.Error);
-    when(mockNotifier.message).thenReturn('Error message');
+    when(() => mockCubit.state).thenReturn(OnAirTvsError('Error message'));
+    init();
 
     final textFinder = find.byKey(Key('error_message'));
 
