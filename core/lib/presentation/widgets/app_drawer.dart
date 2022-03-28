@@ -1,6 +1,6 @@
 import 'package:about/about.dart';
-import '../../presentation/pages/home_movie_page.dart';
-import '../../presentation/pages/home_tv_page.dart';
+import 'package:core/presentation/pages/home_movie_page.dart';
+import 'package:core/presentation/pages/home_tv_page.dart';
 import 'package:watchlist/watchlist.dart';
 import 'package:flutter/material.dart';
 

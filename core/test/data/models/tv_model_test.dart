@@ -1,5 +1,5 @@
-import '../../../lib/data/models/tv_model.dart';
-import '../../../lib/domain/entities/tv.dart';
+import 'package:core/data/models/tv_model.dart';
+import 'package:core/domain/entities/tv.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

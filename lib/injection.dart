@@ -59,7 +59,7 @@ void init() {
     ),
   );
   locator.registerFactory(
-        () => NowPlayingMoviesCubit(
+    () => NowPlayingMoviesCubit(
       locator(),
     ),
   );

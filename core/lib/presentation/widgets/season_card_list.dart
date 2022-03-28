@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
-import '../../domain/entities/season.dart';
 import 'package:flutter/material.dart';
 
 class SeasonCard extends StatelessWidget {

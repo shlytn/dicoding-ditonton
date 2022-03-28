@@ -1,4 +1,5 @@
-import '../../domain/entities/movie.dart';
+import 'package:core/core.dart';
+
 import '../../presentation/pages/movie_detail_page.dart';
 import '../../presentation/widgets/horizontal_card_list.dart';
 import 'package:flutter/material.dart';

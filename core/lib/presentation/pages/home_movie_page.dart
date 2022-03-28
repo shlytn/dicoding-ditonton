@@ -1,15 +1,11 @@
 import 'package:core/core.dart';
+import 'package:core/presentation/pages/popular_movies_page.dart';
+import 'package:core/presentation/pages/top_rated_movies_page.dart';
+import 'package:core/presentation/widgets/home_scaffold.dart';
+import 'package:core/presentation/widgets/movie_list.dart';
+import 'package:core/presentation/widgets/sub_heading.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../presentation/pages/popular_movies_page.dart';
-import '../../presentation/pages/top_rated_movies_page.dart';
-import '../../presentation/widgets/home_scaffold.dart';
-import '../../presentation/widgets/movie_list.dart';
-import '../../presentation/widgets/sub_heading.dart';
 import 'package:flutter/material.dart';
-
-import '../cubit/movie/now_playing_movies_cubit.dart';
-import '../cubit/movie/popular_movies_cubit.dart';
-import '../cubit/movie/top_rated_movies_cubit.dart';
 
 class HomeMoviePage extends StatefulWidget {
   static const ROUTE_NAME = '/home';

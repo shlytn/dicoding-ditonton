@@ -1,11 +1,6 @@
-import '../../lib/data/models/movie_table.dart';
-import '../../lib/data/models/tv_table.dart';
-import '../../lib/domain/entities/genre.dart';
-import '../../lib/domain/entities/movie.dart';
-import '../../lib/domain/entities/movie_detail.dart';
-import '../../lib/domain/entities/season.dart';
-import '../../lib/domain/entities/tv.dart';
-import '../../lib/domain/entities/tv_detail.dart';
+import 'package:core/core.dart';
+import 'package:core/data/models/movie_table.dart';
+import 'package:core/data/models/tv_table.dart';
 
 final testMovie = Movie(
   adult: false,

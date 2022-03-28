@@ -1,13 +1,11 @@
 import 'dart:io';
-
+import 'package:core/core.dart';
+import 'package:core/data/models/genre_model.dart';
+import 'package:core/data/models/movie_detail_model.dart';
+import 'package:core/data/models/movie_model.dart';
+import 'package:core/data/repositories/movie_repository_impl.dart';
 import 'package:dartz/dartz.dart';
-import '../../../lib/data/models/genre_model.dart';
-import '../../../lib/data/models/movie_detail_model.dart';
-import '../../../lib/data/models/movie_model.dart';
-import '../../../lib/data/repositories/movie_repository_impl.dart';
-import '../../../lib/utils/exception.dart';
-import '../../../lib/utils/failure.dart';
-import '../../../lib/domain/entities/movie.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 

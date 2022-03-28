@@ -1,5 +1,5 @@
+import 'package:core/presentation/widgets/tv_card_list.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
 
 import '../cubit/tv/popular_tvs_cubit.dart';

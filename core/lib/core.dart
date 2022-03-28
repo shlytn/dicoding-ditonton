@@ -14,6 +14,8 @@ export 'domain/entities/movie.dart';
 export 'domain/entities/movie_detail.dart';
 export 'domain/entities/tv.dart';
 export 'domain/entities/tv_detail.dart';
+export 'domain/entities/genre.dart';
+export 'domain/entities/season.dart';
 
 // repository
 export 'domain/repositories/movie_repository.dart';
@@ -31,3 +33,14 @@ export 'domain/usecases/get_tv_recommendations.dart';
 export 'domain/usecases/get_on_air_tvs.dart';
 export 'domain/usecases/get_popular_tvs.dart';
 export 'domain/usecases/get_top_rated_tvs.dart';
+
+// cubit
+export 'presentation/cubit/movie/movie_detail_cubit.dart';
+export 'presentation/cubit/movie/now_playing_movies_cubit.dart';
+export 'presentation/cubit/movie/popular_movies_cubit.dart';
+export 'presentation/cubit/movie/top_rated_movies_cubit.dart';
+
+export 'presentation/cubit/tv/tv_detail_cubit.dart';
+export 'presentation/cubit/tv/on_air_tvs_cubit.dart';
+export 'presentation/cubit/tv/popular_tvs_cubit.dart';
+export 'presentation/cubit/tv/top_rated_tvs_cubit.dart';

@@ -1,9 +1,9 @@
 import 'dart:io';
 
+import 'package:core/data/datasources/tv_local_data_source.dart';
+import 'package:core/data/datasources/tv_remote_data_source.dart';
+import 'package:core/data/models/tv_table.dart';
 import 'package:dartz/dartz.dart';
-import '../../data/datasources/tv_local_data_source.dart';
-import '../../data/datasources/tv_remote_data_source.dart';
-import '../../data/models/tv_table.dart';
 import 'package:core/core.dart';
 
 class TvRepositoryImpl implements TvRepository {

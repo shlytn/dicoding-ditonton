@@ -1,13 +1,5 @@
 import 'package:about/about.dart';
 import 'package:core/core.dart';
-import 'package:core/presentation/cubit/movie/movie_detail_cubit.dart';
-import 'package:core/presentation/cubit/movie/now_playing_movies_cubit.dart';
-import 'package:core/presentation/cubit/movie/popular_movies_cubit.dart';
-import 'package:core/presentation/cubit/movie/top_rated_movies_cubit.dart';
-import 'package:core/presentation/cubit/tv/on_air_tvs_cubit.dart';
-import 'package:core/presentation/cubit/tv/popular_tvs_cubit.dart';
-import 'package:core/presentation/cubit/tv/top_rated_tvs_cubit.dart';
-import 'package:core/presentation/cubit/tv/tv_detail_cubit.dart';
 import 'package:core/presentation/pages/movie_detail_page.dart';
 import 'package:core/presentation/pages/home_movie_page.dart';
 import 'package:core/presentation/pages/on_air_tvs_page.dart';
@@ -68,7 +60,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<WatchlistTvCubit>(),
         ),
-
         BlocProvider(
           create: (_) => di.locator<TvSearchBloc>(),
         ),

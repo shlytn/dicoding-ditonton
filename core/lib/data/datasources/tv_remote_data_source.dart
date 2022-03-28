@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:core/core.dart';
-import '../../data/models/tv_detail_model.dart';
-import '../../data/models/tv_model.dart';
-import '../../data/models/tv_response.dart';
+import 'package:core/data/models/tv_detail_model.dart';
+import 'package:core/data/models/tv_model.dart';
+import 'package:core/data/models/tv_response.dart';
 import 'package:http/http.dart' as http;
 
 abstract class TvRemoteDataSource {

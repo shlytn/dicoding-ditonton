@@ -1,14 +1,12 @@
 import 'dart:io';
 
+import 'package:core/core.dart';
+import 'package:core/data/models/genre_model.dart';
+import 'package:core/data/models/season_model.dart';
+import 'package:core/data/models/tv_detail_model.dart';
+import 'package:core/data/models/tv_model.dart';
+import 'package:core/data/repositories/tv_repository_impl.dart';
 import 'package:dartz/dartz.dart';
-import '../../../lib/utils/exception.dart';
-import '../../../lib/utils/failure.dart';
-import '../../../lib/data/models/genre_model.dart';
-import '../../../lib/data/models/season_model.dart';
-import '../../../lib/data/models/tv_detail_model.dart';
-import '../../../lib/data/models/tv_model.dart';
-import '../../../lib/data/repositories/tv_repository_impl.dart';
-import '../../../lib/domain/entities/tv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
