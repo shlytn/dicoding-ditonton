@@ -30,13 +30,13 @@ class TvDetailCubit extends Cubit<TvDetailState> {
     final recommendationResult = await getTvRecommendations.execute(id);
 
     detailResult.fold(
-      (failure) {
+          (failure) {
         emit(state.copyWith(
           tvDetailState: RequestState.Error,
           message: failure.message,
         ));
       },
-      (data) {
+          (data) {
         emit(state.copyWith(
           tvRecommendationsState: RequestState.Loading,
           tvDetail: data,
@@ -44,13 +44,13 @@ class TvDetailCubit extends Cubit<TvDetailState> {
         ));
 
         recommendationResult.fold(
-          (failure) {
+              (failure) {
             emit(state.copyWith(
               tvRecommendationsState: RequestState.Error,
               message: failure.message,
             ));
           },
-          (data) {
+              (data) {
             emit(state.copyWith(
               tvRecommendations: data,
               tvRecommendationsState: RequestState.Loaded,
@@ -65,10 +65,10 @@ class TvDetailCubit extends Cubit<TvDetailState> {
     final result = await saveWatchlist.execute(tv);
 
     await result.fold(
-      (failure) async {
+          (failure) async {
         emit(state.copyWith(watchlistMessage: failure.message));
       },
-      (success) async {
+          (success) async {
         emit(state.copyWith(watchlistMessage: watchlistAddSuccessMessage));
       },
     );
@@ -79,10 +79,10 @@ class TvDetailCubit extends Cubit<TvDetailState> {
     final result = await removeWatchlist.execute(tv);
 
     await result.fold(
-      (failure) async {
+          (failure) async {
         emit(state.copyWith(watchlistMessage: failure.message));
       },
-      (success) async {
+          (success) async {
         emit(state.copyWith(watchlistMessage: watchlistRemoveSuccessMessage));
       },
     );

@@ -6,7 +6,7 @@ part 'on_air_tvs_state.dart';
 
 class OnAirTvsCubit extends Cubit<OnAirTvsState> {
   final GetOnAirTvs _getOnAirTvs;
-  
+
   OnAirTvsCubit(this._getOnAirTvs) : super(OnAirTvsEmpty());
 
   Future<void> get() async {

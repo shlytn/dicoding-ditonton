@@ -15,10 +15,10 @@ class PopularTvsCubit extends Cubit<PopularTvsState> {
     final result = await _getPopularTvs.execute();
 
     result.fold(
-      (failure) {
+          (failure) {
         emit(PopularTvsError(failure.message));
       },
-      (data) {
+          (data) {
         emit(PopularTvsLoaded(data));
       },
     );

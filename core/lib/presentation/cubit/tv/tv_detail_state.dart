@@ -33,14 +33,15 @@ class TvDetailState extends Equatable {
       tvDetailState: tvDetailState ?? this.tvDetailState,
       tvRecommendations: tvRecommendations ?? this.tvRecommendations,
       tvRecommendationsState:
-          tvRecommendationsState ?? this.tvRecommendationsState,
+      tvRecommendationsState ?? this.tvRecommendationsState,
       message: message ?? this.message,
       watchlistMessage: watchlistMessage ?? this.watchlistMessage,
       isAddedToWatchlist: isAddedToWatchlist ?? this.isAddedToWatchlist,
     );
   }
 
-  factory TvDetailState.init() => TvDetailState(
+  factory TvDetailState.init() =>
+      TvDetailState(
         tvDetail: null,
         tvDetailState: RequestState.Empty,
         tvRecommendations: [],
@@ -51,7 +52,8 @@ class TvDetailState extends Equatable {
       );
 
   @override
-  List<Object?> get props => [
+  List<Object?> get props =>
+      [
         tvDetail,
         tvDetailState,
         tvRecommendations,

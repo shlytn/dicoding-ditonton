@@ -7,7 +7,8 @@ part 'now_playing_movies_state.dart';
 class NowPlayingMoviesCubit extends Cubit<NowPlayingMoviesState> {
   final GetNowPlayingMovies _getNowPlayingMovies;
 
-  NowPlayingMoviesCubit(this._getNowPlayingMovies) : super(NowPlayingMoviesEmpty());
+  NowPlayingMoviesCubit(this._getNowPlayingMovies)
+      : super(NowPlayingMoviesEmpty());
 
   Future<void> get() async {
     emit(NowPlayingMoviesLoading());
