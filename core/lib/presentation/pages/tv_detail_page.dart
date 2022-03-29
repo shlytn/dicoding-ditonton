@@ -160,7 +160,7 @@ class DetailContent extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  _showDuration(tv.episodeRunTime[0]),
+                                  _showDuration(tv.episodeRunTime),
                                 ),
                               ]),
                             ),
@@ -253,15 +253,18 @@ class DetailContent extends StatelessWidget {
     return result.substring(0, result.length - 2);
   }
 
-  String _showDuration(int runtime) {
-    final int hours = runtime ~/ 60;
-    final int minutes = runtime % 60;
+  String _showDuration(List<int> runtimes) {
+    for (var runtime in runtimes) {
+      final int hours = runtime ~/ 60;
+      final int minutes = runtime % 60;
 
-    if (hours > 0) {
-      return '${hours}h ${minutes}m';
-    } else {
-      return '${minutes}m';
+      if (hours > 0) {
+        return '${hours}h ${minutes}m';
+      } else {
+        return '${minutes}m';
+      }
     }
+    return '';
   }
 
   String _showNumberOfSeasons(int total) {
