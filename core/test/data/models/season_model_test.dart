@@ -27,4 +27,19 @@ void main() {
     final result = tSeasonModel.toEntity();
     expect(result, tSeason);
   });
+
+  test('should return a JSON map containing proper data', () {
+    final expectedJsonMap = {
+      "air_date": "airDate",
+      "episode_count": 12,
+      "id": 1,
+      "name": "name",
+      "overview": "overview",
+      "poster_path": "posterPath",
+      "season_number": 1,
+    };
+
+    final result = tSeasonModel.toJson();
+    expect(result, expectedJsonMap);
+  });
 }

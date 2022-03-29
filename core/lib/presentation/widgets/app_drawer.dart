@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:about/about.dart';
 import 'package:core/presentation/pages/home_movie_page.dart';
 import 'package:core/presentation/pages/home_tv_page.dart';

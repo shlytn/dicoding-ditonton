@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:core/core.dart';
 
 import '../../presentation/pages/tv_detail_page.dart';

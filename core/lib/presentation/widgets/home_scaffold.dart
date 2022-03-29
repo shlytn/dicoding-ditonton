@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:core/presentation/widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:search/search.dart';

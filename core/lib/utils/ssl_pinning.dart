@@ -1,3 +1,5 @@
+// coverage:ignore-file
+
 import 'package:core/core.dart';
 import 'package:http/http.dart' as http;
 
